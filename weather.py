@@ -13,17 +13,17 @@ def get_data(api_key, lat, lon):
 
     return dict_response
 
-def get_temp(lat,lon):
-    data = get_data('42bb1537c35ff2de934a7f9a7f6dfaa1',lat, lon)
+def get_temp(api_key,lat,lon):
+    data = get_data(api_key,lat, lon)
     #temperature in celsius
     temp = data['main']['temp'] # temp from API is stored in kelvin
     celsius = round(temp - 273.15,2)  #calculate to celsius
     return celsius 
 
 
-def get_wind_dir(lat,lon):
+def get_wind_dir(api_key,lat,lon):
 
-    data = get_data('42bb1537c35ff2de934a7f9a7f6dfaa1',lat, lon)
+    data = get_data(api_key,lat, lon)
     #wind speed and degree
     wind = data['wind']
     wind_speed = wind['speed']
@@ -32,15 +32,15 @@ def get_wind_dir(lat,lon):
 
     return wind_degree
 
-def get_wind_speed(lat,lon):
-    data = get_data('42bb1537c35ff2de934a7f9a7f6dfaa1',lat, lon)
+def get_wind_speed(api_key,lat,lon):
+    data = get_data(api_key,lat, lon)
     #wind speed 
     wind = data['wind']
     wind_speed = wind['speed'] # in meter pro sekunde
     return wind_speed
 
-def get_wind_bft(lat,lon):
-    wind_speed = get_wind_speed(lat,lon) # in meter pro sekunde
+def get_wind_bft(api_key,lat,lon):
+    wind_speed = get_wind_speed(api_key,lat,lon) # in meter pro sekunde
     if wind_speed <= 0.2:
         bft = 0 #Windstille, Flaute
     elif wind_speed <=1.5:
@@ -63,7 +63,7 @@ def get_wind_bft(lat,lon):
         bft = 9 #Sturm
     elif wind_speed <= 28.4:
         bft = 10 #schwerer Sturm
-    elif wind_speed <= 32.6
+    elif wind_speed <= 32.6:
         bft = 11 #orkanartiger Sturm
     else:
         bft = 12 #Orkan
@@ -76,4 +76,4 @@ loe_lat = 47.6169
 loe_lon = 7.6709
 
 # replace XXX with your personal API key
-api_key = '42bb1537c35ff2de934a7f9a7f6dfaa1'
+api_key = 'XXX'

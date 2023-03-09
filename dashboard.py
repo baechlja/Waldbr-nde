@@ -9,10 +9,13 @@ from map import heatmap
 with open('style.css')as f:
  st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html = True)
 
+#API Key for OpenWeatherMap
+api_key = 'XXX' #replace XXX with your personal api key
+
 
 # DASHBOARD
 
-st.title('FireWatch 🔥')
+st.title('FlameDetect 🔥')
 col1, col2= st.columns(2)
 #col2.metric('Location', 'DHBW Loerrach', delta=None, delta_color="normal", help=None, label_visibility="visible")
 location = col1.selectbox('Location:', ['DHBW Hangstraße','DHBW Marie-Curie-Straße'])
@@ -35,9 +38,9 @@ if fire == 1:
 
 
     #MAP
-    heatmap(lat,lon,fire_geo,fire_station)
+    heatmap(api_key,lat,lon,fire_geo,fire_station)
 else:
-   heatmap(lat,lon)
+   heatmap(api_key,lat,lon)
 
 
 if fire == 1:
@@ -46,9 +49,9 @@ else:
    col2.metric('Status', 'NO FIRE', delta=None, delta_color="normal", help=None, label_visibility="visible")
 
 #WEATHER
-temp = get_temp(lat, lon)
-wind_speed = get_wind_speed(lat,lon)
-wind_dir = get_wind_dir(lat,lon)
+temp = get_temp(api_key,lat, lon)
+wind_speed = get_wind_speed(api_key,lat,lon)
+wind_dir = get_wind_dir(api_key,lat,lon)
 
 col1, col2, col3 = st.columns(3)
 col1.metric('Temperatur', str(temp) + '°C', delta=None, delta_color="normal", help=None, label_visibility="visible")

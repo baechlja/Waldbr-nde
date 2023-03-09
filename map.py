@@ -25,8 +25,9 @@ def get_point_at_distance(lat1, lon1, d, bearing, R=6371):
     )
     return (degrees(lat2), degrees(lon2),)
 
-def heatmap(lat,lon,fire_geo=None,fire_station=None,weights=None):
+def heatmap(api_key,lat,lon,fire_geo=None,fire_station=None,weights=None):
     """
+    api_key: key for OpenWeatherMap
     lat: initial latitude
     lon: initial longitude
     fire_geo: list object with tupel of lat and long of fire spots
@@ -65,9 +66,9 @@ def heatmap(lat,lon,fire_geo=None,fire_station=None,weights=None):
         #loop over fire spots
         for n in fire_geo:
             #get wind degree from weather script
-            wind = get_wind_dir(n[0], n[1])
+            wind = get_wind_dir(api_key,n[0], n[1])
             #get wind speed in bft from weather script
-            bft = get_wind_bft(n[0], n[1])
+            bft = get_wind_bft(api_key,n[0], n[1])
             #append speed to list
             wind_speed.append(bft)
             #get centre of the scatter 
