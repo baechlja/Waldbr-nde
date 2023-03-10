@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from weather import get_temp,get_wind_speed,get_wind_dir,get_wind_bft
 from map import heatmap
+from detect import detect_fire
 
 #add CSS sheat
 with open('style.css')as f:
@@ -30,7 +31,10 @@ elif 'DHBW Marie-Curie-Straße':
 
 
 #FIRE
-fire = 1 # Input from model
+model_path = "/home/projects/waldbraende/runs/detect/train9/weights/best.pt"
+test_image = "/home/projects/waldbraende/test.jpg"
+fire = detect_fire(path_to_model=model_path, path_to_image = test_image) # Input from model
+
 if fire == 1:
     fire_geo = [(lat, lon)] # geocodes of firespots
     fire_station = [(47.6027029, 7.6580481)] #geocodes of the next firestation
