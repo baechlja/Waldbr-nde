@@ -1,6 +1,8 @@
 import gmplot
 from math import asin, atan2, cos, degrees, radians, sin
 from weather import get_wind_dir, get_wind_bft
+import os
+import webbrowser
 
 
 # FUNCTIONS
@@ -37,7 +39,7 @@ def heatmap(api_key,lat,lon,fire_geo=None,fire_station=None,weights=None):
     """
     # LOCATION
     map = gmplot.GoogleMapPlotter(lat, lon, 14.5) 
-    # map.apikey = "ADD YOUR API KEY HERE"
+    map.apikey = "XXX"
 
     # FIRE SPOTS
     #add heatmap
@@ -60,9 +62,6 @@ def heatmap(api_key,lat,lon,fire_geo=None,fire_station=None,weights=None):
         wind_color = {0: 'lightgreen', 1: 'forestgreen', 2: 'deepskyblue', 3: 'royalblue', 4: 'navy',
                     5: 'blueviolet', 6: 'indigo', 7: 'purple', 8: 'darkmagenta', 9: 'crimson', 10: 'red', 
                     11: 'darkred', 12: 'maroon'}
-        wind_type = {0: 'Windstille', 1: 'leiser Zug', 2: 'leichte Brise', 3: 'schwache Brise', 4: 'mäßige Brise',
-                    5: 'frische Brise', 6: 'starker Wind', 7: 'steifer Wind', 8: 'stürmischer Wind', 9: 'Stum', 10: 'schwerer Sturm',
-                    11: 'orkanartiger Sturm', 12: 'Orkan'}
         #loop over fire spots
         for n in fire_geo:
             #get wind degree from weather script
